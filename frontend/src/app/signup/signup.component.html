@@ -1,0 +1,92 @@
+<!-- <h1></h1>
+
+<div class="container">
+    <div>
+        <h2>Welcome</h2>
+    </div>
+    <p style="color: lightslategray; text-align: center;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter your Registration
+        details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <input type="text" id="username" placeholder="username" class="form-control" formControlName="email"
+                name="username" />
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Password" class="form-control"
+                formControlName="password" name="password" />
+                <small *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched" style="color: red;">
+                    password is required
+                </small>
+                <small *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched" style="color: red;">
+                    password must contain at least 8 characters !
+                </small>
+                <small *ngIf="signupForm.get('password')?.hasError('maxlength') && signupForm.get('password')?.touched" style="color: red;">
+                    password must be less than 20 characters !
+                </small>
+                <small *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched" style="color: red;">
+                    password should contain atleast 1 number    <br>
+                    password should contain atleast 1 uppercase alphabet<br>
+                    password should contain atleast 1 lowercase alphabet<br>
+                    password should contain atleast 1 special character
+                </small>
+        </div>
+        <div class="form-group">
+            <input type="password" id="confirmpassword" placeholder="Confirm Password" class="form-control"
+                formControlName="confirmPassword" name="confirmPassword" />
+        </div>
+        <input type="submit" class="btn btn-primary w-100" value="Register" name="" >
+    </form>
+<div>
+    <small><a routerLink="/login">Do you have an account? Login</a></small>
+</div>
+</div> -->
+
+<h1></h1>
+
+<div class="container">
+  <div>
+    <h2>Welcome</h2>
+  </div>
+  <p style="color: lightslategray; text-align: center;">
+    Please enter your Registration details
+  </p>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" id="username" formControlName="email" name="username" />
+      </mat-form-field> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" id="username" formControlName="email" name="username" />
+        <mat-error *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">
+          Please enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+      
+      
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" id="password" formControlName="password" name="password" />
+      </mat-form-field>
+      <div *ngIf="signupForm.get('password')?.touched">
+        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')" >Password must contain at least 8 characters</mat-error>
+        <mat-error *ngIf="signupForm.get('password')?.hasError('maxlength')" >Password must be less than 20 characters</mat-error>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" id="confirmpassword" formControlName="confirmPassword" name="confirmPassword" />
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit">Register</button>
+  </form>
+  <div>
+    <small><a routerLink="/login">Do you have an account? Login</a></small>
+  </div>
+</div>

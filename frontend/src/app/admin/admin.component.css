@@ -1,0 +1,105 @@
+/* Add this CSS to your component's style file (e.g., your-component.component.css) */
+
+.container {
+  max-width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #e7cdcd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.addTask {
+  margin-right: 10px;
+}
+
+/* Adjust styles for the form elements if needed */
+mat-form-field {
+  width: 100%;
+}
+
+/* Styles for the mat-table */
+mat-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+mat-header-cell,
+mat-cell {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #311d1d;
+}
+
+mat-header-row,
+mat-row {
+  display: flex;
+}
+
+mat-row {
+  align-items: center;
+}
+
+/* Styles for buttons in the table */
+button {
+  min-width: 80px;
+  margin-right: 10px;
+}
+
+/* Add responsive styles for small screens if needed */
+@media screen and (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  mat-table {
+    margin-top: 10px;
+  }
+
+  button {
+    min-width: 60px;
+    margin-right: 5px;
+  }
+}
+.completed-task {
+  opacity: 0.5; /* Example: Add your preferred style for a completed task */
+  pointer-events: none; /* This will prevent clicks on the disabled button */
+  text-decoration: line-through;
+}
+.completed {
+  color: #a6f885;
+}
+
+.logo {
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  height: 60px;
+  background-color: pink;
+  color: blue;
+  font-family: Arial;
+}
+.logout-button {
+  float: right;
+}
+
+
+.completed {
+  text-decoration: line-through;
+  /* Add any other styling you want for completed rows */
+}
+
+.backdrop{
+  background-color: #ebc8aa; /* Dark background color */
+  color: white
+}
+
+.mat-toolbar {
+  background-color: #d1e1ee; /* Replace with your desired color code */
+}

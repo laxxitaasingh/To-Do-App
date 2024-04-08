@@ -1,0 +1,157 @@
+ <!-- <div class = 'container'>
+    <h1>Your tasks</h1>
+    <div style="display: flex; align-items: center;">
+    <button class='addTask' (click)="toggleInputBox()">Add Task(+)</button>
+    <div *ngIf="showInputBox">
+        <input type="text" [(ngModel)]="newTaskTitle" placeholder="Enter task title">
+        <button class='addTask' (click)="addTask()">Save</button>
+    </div>
+</div>
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Change Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of task; let i = index">
+                <td>{{t.task_title}}</td>
+                <td>{{t.isCompleted ? 'Completed' : 'Incomplete'}}</td>
+                <td>
+                    <button class="status" type="button" (click)="changeStatus(t.task_title)" style="width: 100px;">Mark as complete</button>
+                </td>
+                <td>
+                    <button class="edit" type="button" (click)="toggleEditbox(i)">Edit</button>
+                </td>
+                <td>
+                    <button class="delete" type="button" (click)="deleteTask(t.task_title)">Delete</button>
+                </td>
+                <td *ngIf="editingTaskIndex === i">                    
+                        <input type="text" [(ngModel)]="editedTaskTitle" placeholder="Edit task">
+                        <button class="edit" style="border: 10px;" (click)="editTask(t.task_title)">Save</button>                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   -->
+
+     
+
+  
+      
+ 
+
+    <mat-toolbar >
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+    
+    <div class="backdrop"> 
+
+    <div class="container">
+      <h1 style="color: black;">YOUR TASKS</h1>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button mat-raised-button class="addTask" (click)="toggleInputBox()">Add Task(+)</button>
+        <div *ngIf="showInputBox" fxLayout="column">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="newTaskTitle" placeholder="Enter task title">
+          </mat-form-field>
+          <button mat-raised-button class="addTask" (click)="addTask()" [disabled]="newTaskTitle.length < 3">Save</button>
+        </div>
+      </div>
+   
+      
+
+    
+  <mat-table [dataSource]="task">
+    <ng-container matColumnDef="task_title">
+      <mat-header-cell *matHeaderCellDef> Task </mat-header-cell>
+      <mat-cell *matCellDef="let t"> {{t.task_title}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="isCompleted">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let t"> {{t.isCompleted ? 'Completed' : 'Incomplete'}} </mat-cell>
+    </ng-container>
+  
+    <!-- <ng-container matColumnDef="changeStatus">
+      <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+      <mat-cell *matCellDef="let t">
+        <button mat-icon-button (click)="changeStatus(t.task_title)"  style="color: #e47b7b;"><mat-icon>check_circle</mat-icon></button>
+      </mat-cell> 
+    </ng-container> -->
+    <!-- <ng-container matColumnDef="changeStatus">
+      <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+      <mat-cell *matCellDef="let t" [class.completed]="t.isCompleted">
+        <button mat-icon-button (click)="changeStatus(t.task_title)" style="color: #8dc976;">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container> -->
+    <ng-container matColumnDef="changeStatus">
+      <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+      <mat-cell *matCellDef="let t" [class.completed]="t.isCompleted">
+        <button mat-icon-button (click)="changeStatus(t.task_title)" [style.color]="t.isCompleted ? '#8ed871': '#e47b7b' ">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    
+    
+  
+    
+    
+  
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let t; let i =index ">
+        <!-- <button mat-icon-button (click)="openEditTaskDialog(t.task_title, i)" style="color: #2196F3;"> -->
+        <button mat-icon-button  (click)="toggleEditbox(i)" style="color: #2196F3;"> <mat-icon>edit</mat-icon></button> 
+        </mat-cell>
+        <mat-icon>edit</mat-icon>
+      
+    </ng-container> 
+
+    
+  
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let t">
+        <button mat-icon-button color="warn" (click)="deleteTask(t.task_title)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="editTask">
+      <mat-header-cell *matHeaderCellDef> Edit Task </mat-header-cell>
+      <mat-cell *matCellDef="let t; let i = index">
+        <div *ngIf="editingTaskIndex === i">
+          <input type="text" [(ngModel)]="editedTaskTitle" placeholder="Edit task">
+          <button mat-raised-button color="primary" (click)="editTask(t.task_title) "[disabled]="!editedTaskTitle.trim() ||t.isCompleted|| editedTaskTitle.length < 3">Save</button>
+        </div>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [class.completed]="row.isCompleted"></mat-row>
+  </mat-table>
+
+</div> 
+
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+  
+  
+
+
+
+   

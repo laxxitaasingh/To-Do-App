@@ -1,0 +1,59 @@
+/* Add a global style to apply Roboto font to the entire page */
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Style the body container */
+  .body {
+    background-color: #9e9696; /* Light gray background */
+    height: 100vh; /* 100% viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Style the login container */
+  .container {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    text-align: center;
+  }
+  
+  /* Style the heading */
+  .container h1 {
+    color: #333; /* Dark gray text color */
+    
+
+  }
+
+  h1 {
+    font-family: 'YourFontFamily', ;
+  }
+  
+  /* Style the paragraph */
+  .container p {
+    color: #808080; /* Gray text color */
+  }
+  
+  /* Style the error message */
+  .container small {
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* Style the form inputs and button */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  mat-error {
+    color: red;
+  }
+  
+  button {
+    width: 100%;
+  }
+  

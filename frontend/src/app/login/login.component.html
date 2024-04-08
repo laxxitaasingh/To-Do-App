@@ -1,0 +1,68 @@
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+<div class="body">
+    <div class = 'container'>                
+                    <div>
+                        <h1>Welcome <br> To-Do list</h1>
+                    </div>
+                    <p style="color: lightslategray; text-align: center;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter your login
+                        details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                        <small style="color: red; text-align: center; font-family:'Times New Roman', Times, serif" *ngIf="loginFailed">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invalid credentials!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small></p>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email" class="form-control" formControlName="email"
+                                name="email" />
+                            <small *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" style="color: red;">
+                                username is required
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" placeholder="Password" class="form-control"
+                                formControlName="password" name="password" />
+                   
+                        </div>
+                        <input type="submit" class="btn btn-primary w-100" value="Login" name="" [disabled]="loginForm.invalid">
+                    </form>
+                <div>
+                    <small><a routerLink="/signup">Do not have an account? SignUp</a></small>
+                </div>
+     
+            </div>
+     
+        </div> -->
+
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+        
+    
+        <div class="body">
+          <div class="container" fxLayout="column" fxLayoutAlign="center center">
+            <div>
+              <h1>Welcome <br> To-Do list</h1>
+            </div>
+            <p style="color: lightslategray; text-align: center;">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter your login
+              details&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+              <small style="color: red; text-align: center; font-family: 'Times New Roman', Times, serif" *ngIf="loginFailed">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invalid credentials!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+            </p>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center">
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" id="email" formControlName="email" name="email" />
+                <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">Email is required</mat-error>
+              </mat-form-field>
+        
+              <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" id="password" formControlName="password" name="password" />
+              </mat-form-field>
+        
+              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+            </form>
+            <div>
+              <small><a routerLink="/signup">Do not have an account? SignUp</a></small>
+            </div>
+          </div>
+        </div>
+        
